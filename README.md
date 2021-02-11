@@ -1,8 +1,6 @@
 # CampusMap 
----
 
-A Web Application for finding the shortest path between 2 buildings on UW!
-
+A Web Application for finding the shortest path between 2 buildings on UW
 The CampusMap application works by setting up a server with the details on what buildings
 are available and the shortest path between them. On the Front-End side made with ReactJS,
 the user can clink on points that represent the buildings as well as select which entrance
@@ -14,11 +12,9 @@ to start from. In addition, there are additional options on how the path will be
 1. Start the Spark Server. This can be done by opening CampusMap/src/main/java/server/SparkServer.java in an IDE and starting it up.
 
 2. Open the front-end side. This can be done either by
-- Opening CampusMap/front-end/build/index.html
-
-or
-
-- Open the CampusMap/front-end/ folder and using a shell, type 'npm start'
+	- Opening CampusMap/front-end/build/index.html
+	or
+	- Open the CampusMap/front-end/ folder and using a shell, type 'npm start'
 
 ---
 
