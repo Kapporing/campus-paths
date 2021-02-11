@@ -1,0 +1,32 @@
+# Basic Dijkstra on a simple graph
+CreateGraph sanity_check
+
+AddNode sanity_check A
+AddNode sanity_check B
+AddNode sanity_check C
+AddNode sanity_check D
+AddNode sanity_check E
+AddNode sanity_check F
+AddNode sanity_check G
+
+AddEdge sanity_check A B 2.0
+AddEdge sanity_check A C 1.0
+
+AddEdge sanity_check B C 5.0
+AddEdge sanity_check B D 11.0
+AddEdge sanity_check B E 3.0
+
+AddEdge sanity_check C G 15.0
+
+AddEdge sanity_check D E 2.0
+
+AddEdge sanity_check E C 1.0
+AddEdge sanity_check E G 4.0
+AddEdge sanity_check E F 5.0
+
+AddEdge sanity_check F D 1.0
+AddEdge sanity_check F G 1.0
+
+FindPath sanity_check A F
+FindPath sanity_check A A
+FindPath sanity_check F A

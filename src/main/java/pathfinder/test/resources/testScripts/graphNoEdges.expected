@@ -1,0 +1,10 @@
+# Create a graph with no edges
+# attempts to get a path from two nodes
+created graph graph
+
+added node node1 to graph
+added node node2 to graph
+added node node3 to graph
+
+path from node1 to node2:
+no path found

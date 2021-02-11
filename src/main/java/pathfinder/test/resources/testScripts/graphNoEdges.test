@@ -1,0 +1,9 @@
+# Create a graph with no edges
+# attempts to get a path from two nodes
+CreateGraph graph
+
+AddNode graph node1
+AddNode graph node2
+AddNode graph node3
+
+FindPath graph node1 node2

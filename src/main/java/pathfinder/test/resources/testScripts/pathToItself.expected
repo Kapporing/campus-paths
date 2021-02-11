@@ -1,0 +1,9 @@
+# Create a single node and test a path to itself
+created graph graph
+
+added node node1 to graph
+
+added edge 0.000 from node1 to node1 in graph
+
+path from node1 to node1:
+total cost: 0.000

@@ -1,0 +1,38 @@
+# Basic Dijkstra on a simple graph
+created graph sanity_check
+
+added node A to sanity_check
+added node B to sanity_check
+added node C to sanity_check
+added node D to sanity_check
+added node E to sanity_check
+added node F to sanity_check
+added node G to sanity_check
+
+added edge 2.000 from A to B in sanity_check
+added edge 1.000 from A to C in sanity_check
+
+added edge 5.000 from B to C in sanity_check
+added edge 11.000 from B to D in sanity_check
+added edge 3.000 from B to E in sanity_check
+
+added edge 15.000 from C to G in sanity_check
+
+added edge 2.000 from D to E in sanity_check
+
+added edge 1.000 from E to C in sanity_check
+added edge 4.000 from E to G in sanity_check
+added edge 5.000 from E to F in sanity_check
+
+added edge 1.000 from F to D in sanity_check
+added edge 1.000 from F to G in sanity_check
+
+path from A to F:
+A to B with weight 2.000
+B to E with weight 3.000
+E to F with weight 5.000
+total cost: 10.000
+path from A to A:
+total cost: 0.000
+path from F to A:
+no path found

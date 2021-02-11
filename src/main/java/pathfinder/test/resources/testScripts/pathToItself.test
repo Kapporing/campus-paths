@@ -1,0 +1,8 @@
+# Create a single node and test a path to itself
+CreateGraph graph
+
+AddNode graph node1
+
+AddEdge graph node1 node1 0
+
+FindPath graph node1 node1
