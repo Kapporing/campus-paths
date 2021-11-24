@@ -49,7 +49,7 @@ class App extends Component<{}, AppState> {
         // We want to get a list of all the buildings
         // to pass down to the Pathfinder component so we can get the dropdown menu
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost:4567/buildings");
+        xhr.open("POST", "http://ec2-35-86-242-182.us-west-2.compute.amazonaws.com:4567/buildings");
         xhr.onload = () => this.loadBuildings(xhr);
         xhr.onerror = this.showConnectionFailure;
         xhr.send(null);

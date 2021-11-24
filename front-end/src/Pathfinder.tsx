@@ -151,7 +151,7 @@ class Pathfinder extends Component<PathfinderProps, PathfinderState> {
         // Create a XMLHttpRequest to the server to get the Path object as a JSON object to the React server
         const xhr = new XMLHttpRequest();
 
-        xhr.open("POST", "http://localhost:4567/path?start=" + encodeURIComponent(start) + "&end=" + encodeURIComponent(end));
+        xhr.open("POST", "http://ec2-35-86-242-182.us-west-2.compute.amazonaws.com:4567/path?start=" + encodeURIComponent(start) + "&end=" + encodeURIComponent(end));
         xhr.onload = () => this.getPathFinished(xhr);       // Calls the getPathFinished function when done
         xhr.send("");
     };

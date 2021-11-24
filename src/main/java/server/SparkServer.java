@@ -26,6 +26,9 @@ public class SparkServer {
 
         CampusMap map = new CampusMap();
         Gson gson = new Gson();
+
+        Spark.get("/", (req, res) -> "Hello World!");
+
         Spark.post("/path", (req, res) -> {
             String start = req.queryParams("start");
             String end = req.queryParams("end");
