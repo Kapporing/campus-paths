@@ -14,7 +14,7 @@ to start from. In addition, there are additional options on how the path will be
 2. Open the front-end side. This can be done either by
 	- Opening campus-paths/front-end/build/index.html
 	or
-	- Open the campus-paths/front-end/ folder and using a shell, type 'npm start'
+	- Open the campus-paths/front-end/ folder and using a shell, type 'npm install && npm start'
 ## Usage:
 Starting Point and Ending Point represent which 2 points to find the path into
 
