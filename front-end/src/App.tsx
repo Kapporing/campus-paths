@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import axios, {AxiosResponse} from 'axios';
 import CampusMap from './CampusMap';
 import Pathfinder from "./Pathfinder";
-import {Button, Modal} from "react-bootstrap";
+import {Button, Modal, Spinner} from "react-bootstrap";
 
 export interface CampusBuilding {
     x: number;
@@ -26,6 +26,7 @@ interface AppState {
     centralBuilding: Map<string, CampusBuilding[]>;
     clickedPaths: [string, string];
     connectionFailure: boolean;
+    buildingsLoaded: boolean;
     drawOptions: Options;
 }
 
@@ -41,6 +42,7 @@ class App extends Component<{}, AppState> {
             centralBuilding: new Map(),
             clickedPaths: ["", ""],
             connectionFailure: false,
+            buildingsLoaded: false,
             drawOptions: {
                 hogWild: false,
                 rainbow: false,
@@ -56,6 +58,7 @@ class App extends Component<{}, AppState> {
             })
             .catch(err => {
                 alert(err);
+                this.setState({buildingsLoaded: true});
             });
     }
 
@@ -84,7 +87,8 @@ class App extends Component<{}, AppState> {
         this.setState({
             buildingsMap: newMap,
             buildings: buildingsList,
-            centralBuilding: map
+            centralBuilding: map,
+            buildingsLoaded: true
         });
     };
 
@@ -151,23 +155,31 @@ class App extends Component<{}, AppState> {
                     </Modal.Footer>
                 </Modal>
 
-                <h1 className="text-center">Here's the beginning of your AMAZING CampusPaths GUI!</h1>
+                <h1 className="text-center">Campus-Paths</h1>
                 <Pathfinder clickedPaths={this.state.clickedPaths}
                             buildingsMap={this.state.buildingsMap}
                             updatePoints={this.updatePointsList}
                             updateDirections={this.updateDirections}
                             updateOptions={this.updateOptions}/>
 
-                <CampusMap sendPath={this.pointToPoint}
-                           centralBuilding={this.state.centralBuilding}
-                           buildings={this.state.buildings}
-                           points={this.state.pointTuples}
-                           directions={this.state.directions}
-                           options={this.state.drawOptions}/>
+                {
+                    this.state.buildingsLoaded ?
+                    <CampusMap sendPath={this.pointToPoint}
+                               centralBuilding={this.state.centralBuilding}
+                               buildings={this.state.buildings}
+                               points={this.state.pointTuples}
+                               directions={this.state.directions}
+                               options={this.state.drawOptions}/>
+                    :
+                    <Spinner style={{
+                        position: "fixed",
+                        top: "50%",
+                        left: "50%"
+                    }} animation="grow"/>
+                }
             </div>
         );
     }
-
 }
 
 export default App;
