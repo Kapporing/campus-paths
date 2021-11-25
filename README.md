@@ -8,6 +8,9 @@ are available and the shortest path between them. On the Front-End side made wit
 the user can clink on points that represent the buildings as well as select which entrance
 to start from. In addition, there are additional options on how the path will be rendered.
 
+## Live Demo
+Visit the website [here](https://kapporing.github.io/campus-paths/) for a live demo. Spark server hosted on EC2, front-end react app hosted on GH-pages
+
 ## How to get it working:
 1. Start the Spark Server. This can be done by opening campus-paths/src/main/java/server/SparkServer.java in an IDE and starting it up.
 
