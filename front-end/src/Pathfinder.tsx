@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios, {AxiosResponse} from "axios";
 import './Pathfinder.tsx';
 import {
     Col,
@@ -148,13 +149,17 @@ class Pathfinder extends Component<PathfinderProps, PathfinderState> {
         // Gets the start/end points
         let start = this.state.start;
         let end = this.state.end;
-        // Create a XMLHttpRequest to the server to get the Path object as a JSON object to the React server
-        const xhr = new XMLHttpRequest();
 
         // Note that the heroku app wrapper is a workaround for CORS to enable https
-        xhr.open("POST", "https://pacific-atoll-14487.herokuapp.com/http://ec2-35-86-242-182.us-west-2.compute.amazonaws.com:4567/path?start=" + encodeURIComponent(start) + "&end=" + encodeURIComponent(end));
-        xhr.onload = () => this.getPathFinished(xhr);       // Calls the getPathFinished function when done
-        xhr.send("");
+        axios.post(`https://pacific-atoll-14487.herokuapp.com/http://ec2-35-86-242-182.us-west-2.compute.amazonaws.com:4567/path?start=${encodeURIComponent(start)}&end=${encodeURIComponent(end)}`)
+            .then(res => {
+                this.getPathFinished(res);
+            })
+            .catch(err => {
+                this.setState({
+                    showError: [true, err.response.data]
+                });
+            })
     };
 
     /**
@@ -162,18 +167,10 @@ class Pathfinder extends Component<PathfinderProps, PathfinderState> {
      *
      * @param xhr XMLHttpRequest object that was used to query
      */
-    getPathFinished = (xhr: XMLHttpRequest) => {
-        // If it wasn't successful, alert the user
-        if (xhr.status !== 200) {
-            this.setState({
-               showError: [true, xhr.responseText]
-            });
-        } else {
-            // If successful, parse it to a JSON object from the JSON format and then send the Path to App->CampusMap
-            let jsonObj = JSON.parse(xhr.responseText);
-            this.sendPath(jsonObj.path);
-            this.sendDirections(jsonObj.directions);
-        }
+    getPathFinished = (res: AxiosResponse<any>) => {
+        // If successful, parse it to a JSON object from the JSON format and then send the Path to App->CampusMap
+        this.sendPath(res.data.path);
+        this.sendDirections(res.data.directions);
     };
 
     /**

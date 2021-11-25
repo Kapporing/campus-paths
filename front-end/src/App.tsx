@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios, {AxiosResponse} from 'axios';
 import CampusMap from './CampusMap';
 import Pathfinder from "./Pathfinder";
 import {Button, Modal} from "react-bootstrap";
@@ -48,12 +49,14 @@ class App extends Component<{}, AppState> {
         };
         // We want to get a list of all the buildings
         // to pass down to the Pathfinder component so we can get the dropdown menu
-        let xhr = new XMLHttpRequest();
         // Note that the heroku app wrapper is a workaround for CORS to enable https
-        xhr.open("POST", "https://pacific-atoll-14487.herokuapp.com/http://ec2-35-86-242-182.us-west-2.compute.amazonaws.com:4567/buildings");
-        xhr.onload = () => this.loadBuildings(xhr);
-        xhr.onerror = this.showConnectionFailure;
-        xhr.send(null);
+        axios.post('https://pacific-atoll-14487.herokuapp.com/http://ec2-35-86-242-182.us-west-2.compute.amazonaws.com:4567/buildings')
+            .then( res => {
+                this.loadBuildings(res);
+            })
+            .catch(err => {
+                alert(err);
+            });
     }
 
     showConnectionFailure = () => {
@@ -62,32 +65,27 @@ class App extends Component<{}, AppState> {
         });
     }
 
-    loadBuildings = (xhr: any) => {
-        if (xhr.status !== 200) {
-            alert(xhr.responseText);
-        } else {
-            let jsonObj = JSON.parse(xhr.responseText); // reponse has: map[sname,lname] buildingNames and set<campusbuilding> buildings
-            let newMap = new Map<string, string>();
-            let buildingsList: CampusBuilding[] = [];
+    loadBuildings = (res: AxiosResponse<any>) => {
+        let newMap = new Map<string, string>();
+        let buildingsList: CampusBuilding[] = [];
 
-            for (let key in jsonObj.buildingNames) {
-                if (jsonObj.buildingNames.hasOwnProperty(key)) {
-                    newMap.set(key, jsonObj.buildingNames[key]);
-                }
+        for (let key in res.data.buildingNames) {
+            if (res.data.buildingNames.hasOwnProperty(key)) {
+                newMap.set(key, res.data.buildingNames[key]);
             }
-            for (let i = 0; i < jsonObj.buildings.length; i++) {
-                const item = jsonObj.buildings[i] as CampusBuilding;
-                buildingsList.push(item);
-            }
-
-            let map = this.parseBuildings(buildingsList);
-
-            this.setState({
-                buildingsMap: newMap,
-                buildings: buildingsList,
-                centralBuilding: map
-            });
         }
+        for (let i = 0; i < res.data.buildings.length; i++) {
+            const item = res.data.buildings[i] as CampusBuilding;
+            buildingsList.push(item);
+        }
+
+        let map = this.parseBuildings(buildingsList);
+
+        this.setState({
+            buildingsMap: newMap,
+            buildings: buildingsList,
+            centralBuilding: map
+        });
     };
 
     parseBuildings = (list: CampusBuilding[]) => {

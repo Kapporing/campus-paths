@@ -2,7 +2,6 @@
   "name": "campuspaths",
   "version": "1.0.0",
   "private": true,
-  "homepage": "http://kapporing.github.io/campus-paths",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -11,6 +10,7 @@
     "@types/node": "^12.12.39",
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "axios": "^0.24.0",
     "bootstrap": "^4.5.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
