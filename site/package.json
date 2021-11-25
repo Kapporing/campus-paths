@@ -2,6 +2,7 @@
   "name": "campuspaths",
   "version": "1.0.0",
   "private": true,
+  "homepage": "http://kapporing.github.io/campus-paths",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
