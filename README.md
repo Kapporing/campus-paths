@@ -15,9 +15,9 @@ Visit the website [here](https://kapporing.github.io/campus-paths/) for a live d
 1. Start the Spark Server. This can be done by opening campus-paths/src/main/java/server/SparkServer.java in an IDE and starting it up.
 
 2. Open the front-end side. This can be done either by
-	- Opening campus-paths/front-end/build/index.html
+	- Opening campus-paths/site/build/index.html
 	or
-	- Open the campus-paths/front-end/ folder and using a shell, type 'npm install && npm start'
+	- Open the campus-paths/site/ folder and using a shell, type 'npm install && npm start'
 ## Usage:
 Starting Point and Ending Point represent which 2 points to find the path into
 
