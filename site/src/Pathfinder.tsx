@@ -151,7 +151,7 @@ class Pathfinder extends Component<PathfinderProps, PathfinderState> {
         let end = this.state.end;
 
         // Note that the heroku app wrapper is a workaround for CORS to enable https
-        axios.post(`https://pacific-atoll-14487.herokuapp.com/http://ec2-35-86-242-182.us-west-2.compute.amazonaws.com:4567/path?start=${encodeURIComponent(start)}&end=${encodeURIComponent(end)}`)
+        axios.post(`https://pp3ewz3l2f.execute-api.us-west-2.amazonaws.com/prod/path?start=${encodeURIComponent(start)}&end=${encodeURIComponent(end)}`)
             .then(res => {
                 this.getPathFinished(res);
             })

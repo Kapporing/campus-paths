@@ -52,7 +52,7 @@ class App extends Component<{}, AppState> {
         // We want to get a list of all the buildings
         // to pass down to the Pathfinder component so we can get the dropdown menu
         // Note that the heroku app wrapper is a workaround for CORS to enable https
-        axios.post('https://pacific-atoll-14487.herokuapp.com/http://ec2-35-86-242-182.us-west-2.compute.amazonaws.com:4567/buildings')
+        axios.post('https://pp3ewz3l2f.execute-api.us-west-2.amazonaws.com/prod/buildings')
             .then( res => {
                 this.loadBuildings(res);
             })
